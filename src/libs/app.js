@@ -78,3 +78,29 @@ export const getUnion = (arr1, arr2) => {
     }
   }
   
+
+  /**
+ * @param {Array} routeMetched 当前路由metched
+ * @returns {Array}
+ */
+export const getBreadCrumbList = (route, homeRoute) => {
+   // let homeItem = { ...homeRoute, icon: homeRoute.meta.icon }
+    let routeMetched = route.matched
+    // if (routeMetched.some(item => item.name === homeRoute.name)) return [homeItem]
+    let res = routeMetched.filter(item => {
+      return item.meta === undefined || !item.meta.hideInBread
+    }).map(item => {
+      let meta = {...item.meta}
+      if (meta.title && typeof meta.title === 'function') meta.title = meta.title(route)
+      let obj = {
+        icon: (item.meta && item.meta.icon) || '',
+        name: item.name,
+        meta: meta
+      }
+      return obj
+    })
+    res = res.filter(item => {
+      return item.meta.needBread ? true : !item.meta.hideInMenu
+    })
+    return [ ...res]
+  }

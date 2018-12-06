@@ -35,7 +35,7 @@ import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 // import TagsNav from './components/tags-nav'
 // import User from './components/user'
-// import { mapMutations, mapActions, mapGetters } from 'vuex'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 // import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
 import minLogo from '@/assets/images/logo-min.jpg'
@@ -77,7 +77,6 @@ export default {
   //     return ['ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []]
   //   },
     menuList () {
-      console.log(this.$store.getters['app/menuList'],'[1]')
       return this.$store.getters['app/menuList']
     },
   //   local () {
@@ -88,13 +87,13 @@ export default {
   //   }
   },
   methods: {
-  //   ...mapMutations([
-  //     'setBreadCrumb',
-  //     'setTagNavList',
-  //     'addTag',
-  //     'setLocal',
-  //     'setHomeRoute'
-  //   ]),
+    // ...mapMutations([
+    //   'setBreadCrumb',
+      // 'setTagNavList',
+      // 'addTag',
+      // 'setLocal',
+      // 'setHomeRoute'
+    // ]),
   //   ...mapActions([
   //     'handleLogin'
   //   ]),
@@ -141,7 +140,7 @@ export default {
       //   route: { name, query, params, meta },
       //   type: 'push'
       // })
-      // this.setBreadCrumb(newRoute)
+      this.$store.commit('app/setBreadCrumb',newRoute)
       // this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
       this.$refs.sideMenu.updateOpenName(newRoute.name)
     }
@@ -155,7 +154,7 @@ export default {
   //   this.addTag({
   //     route: this.$store.state.app.homeRoute
   //   })
-  //   this.setBreadCrumb(this.$route)
+    this.$store.commit('app/setBreadCrumb',this.$route)
   //   // 设置初始语言
   //   this.setLocal(this.$i18n.locale)
   //   // 如果当前打开页面不在标签栏中，跳到homeName页

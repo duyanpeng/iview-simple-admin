@@ -64,9 +64,9 @@ export default [
 
   {
     path: '/home',
-    name: 'homeparent',
+    name: 'home_layout',
     meta: {
-      hideInBread: true
+      hideInBread: true,
     },
     component: Main,
     children: [
