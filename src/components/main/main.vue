@@ -13,7 +13,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <!-- <user :user-avator="userAvator"/> -->
+          <user :user-avator="userAvator"/>
         </header-bar>
       </Header>
 
@@ -34,7 +34,7 @@
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
 // import TagsNav from './components/tags-nav'
-// import User from './components/user'
+import User from './components/user'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 // import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
@@ -50,7 +50,7 @@ export default {
   //   TagsNav,
   //   Fullscreen,
   //   ErrorStore,
-  //   User,
+    User,
   },
   data () {
     return {
@@ -70,9 +70,9 @@ export default {
   //   tagRouter () {
   //     return this.$store.state.app.tagRouter
   //   },
-  //   userAvator () {
-  //     return this.$store.state.user.avatorImgPath
-  //   },
+    userAvator () {
+      return this.$store.state.app.avatorImgPath
+    },
   //   cacheList () {
   //     return ['ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []]
   //   },
@@ -85,6 +85,9 @@ export default {
   //   hasReadErrorPage () {
   //     return this.$store.state.app.hasReadErrorPage
   //   }
+      unreadCount () {
+      return this.$store.state.app.unreadCount
+    }
   },
   methods: {
     // ...mapMutations([

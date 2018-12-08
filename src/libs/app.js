@@ -16,6 +16,19 @@ export const hasOneOf = (targetarr, arr) => {
     return targetarr.some(_ => arr.indexOf(_) > -1)
 }
 
+/**
+ * @param {String|Number} value 要验证的字符串或数值
+ * @param {*} validList 用来验证的列表
+ */
+export function oneOf (value, validList) {
+    for (let i = 0; i < validList.length; i++) {
+      if (value === validList[i]) {
+        return true
+      }
+    }
+    return false
+  }
+
 export const hasChild = (item) => {
     return item.children && item.children.length !== 0
 }
@@ -100,7 +113,67 @@ export const getBreadCrumbList = (route, homeRoute) => {
       return obj
     })
     res = res.filter(item => {
-      return item.meta.needBread ? true : !item.meta.hideInMenu
+       return !item.meta.hideInBread
     })
     return [ ...res]
   }
+
+
+  /**
+ * 权鉴
+ * @param {*} name 即将跳转的路由name
+ * @param {*} access 用户权限数组
+ * @param {*} routes 路由列表
+ * @description 用户是否可跳转到该页
+ */
+export const canTurnTo = (name, access, routes) => {
+    const routePermissionJudge = (list) => {
+      return list.some(item => {
+        if (item.children && item.children.length) {
+          return routePermissionJudge(item.children)
+        } else if (item.name === name) {
+          return hasAccess(access, item)
+        }
+      })
+    }
+  
+    return routePermissionJudge(routes)
+  }
+
+  /**
+ * @description 绑定事件 on(element, event, handler)
+ */
+export const on = (function () {
+    if (document.addEventListener) {
+      return function (element, event, handler) {
+        if (element && event && handler) {
+          element.addEventListener(event, handler, false)
+        }
+      }
+    } else {
+      return function (element, event, handler) {
+        if (element && event && handler) {
+          element.attachEvent('on' + event, handler)
+        }
+      }
+    }
+  })()
+  
+  /**
+   * @description 解绑事件 off(element, event, handler)
+   */
+  export const off = (function () {
+    if (document.removeEventListener) {
+      return function (element, event, handler) {
+        if (element && event) {
+          element.removeEventListener(event, handler, false)
+        }
+      }
+    } else {
+      return function (element, event, handler) {
+        if (element && event) {
+          element.detachEvent('on' + event, handler)
+        }
+      }
+    }
+  })()
