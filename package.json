@@ -1,6 +1,6 @@
 {
-  "name": "iview-simple-admine",
-  "version": "0.1.0",
+  "name": "iview-simple-admin",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
