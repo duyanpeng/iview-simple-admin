@@ -26,7 +26,7 @@
 <script>
  import SideMenuItem from "./side-menu-item.vue";
  import CollapsedMenu from "./collapsed-menu.vue";
- import { getUnion } from '@/libs/app'
+ import { getUnion } from '../../../../libs/app'
  import mixin from './mixin'
 
 export default {
@@ -81,8 +81,6 @@ export default {
       return this.$route.matched.map(item => item.name).filter(item => item !== name)
     },
     updateOpenName (name) {
-      // if (name === this.$config.homeName) this.openedNames = []
-      // else 
       this.openedNames = this.getOpenedNamesByActiveName(name)
     }
   },

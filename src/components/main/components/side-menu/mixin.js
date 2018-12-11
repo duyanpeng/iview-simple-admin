@@ -1,5 +1,5 @@
- import CommonIcon from '_c/common-icon'
-import { showTitle } from '@/libs/app'
+ import CommonIcon from '../../../common-icon'
+import { showTitle } from '../../../../libs/app'
 export default {
   components: {
      CommonIcon

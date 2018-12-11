@@ -2,7 +2,6 @@
   <div>
     <Card>
       <div class="drag-box-card">
-
         <!-- 切记设置list1和list2属性时，一定要添加.sync修饰符 -->
         <drag-list :list1.sync="list1" :list2.sync="list2" :dropConClass="dropConClass" @on-change="handleChange">
           <h3 slot="left-title">待办事项</h3>
@@ -28,7 +27,7 @@
   </div>
 </template>
 <script>
-import DragList from "_c/drag-list";
+import DragList from "../../../components/drag-list";
 export default {
   name: "drag_list_page",
   components: {
@@ -71,7 +70,7 @@ export default {
       {
         name: "算度市设酸革员七响分土门。",
         id: 50
-      }
+      },
     ];
     this.list2 = [
       {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Icons from '_c/icons'
+import Icons from '../icons'
 export default {
   name: 'CommonIcon',
   components: {Icons},

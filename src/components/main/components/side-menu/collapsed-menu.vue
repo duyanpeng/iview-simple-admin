@@ -12,7 +12,7 @@
 <script>
 import mixin from './mixin'
 import itemMixin from './item-mixin'
-import { findNodeUpperByClasses } from '@/libs/app'
+import { findNodeUpperByClasses } from '../../../../libs/app'
 
 export default {
   name: 'CollapsedMenu',

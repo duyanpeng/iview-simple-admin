@@ -1,3 +1,4 @@
+// 同数组的forEach方法 arr.forEach(fn)
 export const forEach = (arr, fn) => {
     if (!arr.length || !fn) return
     let i = -1
@@ -10,7 +11,7 @@ export const forEach = (arr, fn) => {
 /**
 * @param {Array} target 目标数组
 * @param {Array} arr 需要查询的数组
-* @description 判断要查询的数组是否至少有一个元素包含在目标数组中
+* @description 判断要查询的数组是否至少有一个元素包含在目标数组中，主要用于权限判断。
 */
 export const hasOneOf = (targetarr, arr) => {
     return targetarr.some(_ => arr.indexOf(_) > -1)
@@ -29,12 +30,12 @@ export function oneOf (value, validList) {
     return false
   }
 
+// 判断路由中路由项是否有children子路由
 export const hasChild = (item) => {
     return item.children && item.children.length !== 0
 }
 
-
-// 过滤权限
+// 将没有权限的菜单从菜单列表过滤掉
 const showThisMenuEle = (item, access) => {
     if (item.meta && item.meta.access && item.meta.access.length) {
         if (hasOneOf(item.meta.access, access)) return true
@@ -65,6 +66,7 @@ export const getMenuByRouter = (list, access) => {
     return res
 }
 
+// 展示title字段，没有则取name
 export const showTitle = (item) => {
     let title = (item.meta && item.meta.title) || item.name
     return title
@@ -93,13 +95,11 @@ export const getUnion = (arr1, arr2) => {
   
 
   /**
- * @param {Array} routeMetched 当前路由metched
+ * @param {Array} routeMetched 当前路由metched，生成面包屑
  * @returns {Array}
  */
-export const getBreadCrumbList = (route, homeRoute) => {
-   // let homeItem = { ...homeRoute, icon: homeRoute.meta.icon }
+export const getBreadCrumbList = (route) => {
     let routeMetched = route.matched
-    // if (routeMetched.some(item => item.name === homeRoute.name)) return [homeItem]
     let res = routeMetched.filter(item => {
       return item.meta === undefined || !item.meta.hideInBread
     }).map(item => {

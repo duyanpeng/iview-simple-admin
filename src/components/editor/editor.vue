@@ -7,7 +7,7 @@
 <script>
 import Editor from 'wangeditor'
 import 'wangeditor/release/wangEditor.min.css'
-import { oneOf } from '@/libs/app'
+import { oneOf } from '../../libs/app'
 export default {
   name: 'Editor',
   props: {

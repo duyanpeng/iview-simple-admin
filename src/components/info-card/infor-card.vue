@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import CommonIcon from '_c/common-icon'
+import CommonIcon from '../common-icon'
 export default {
   name: 'InforCard',
   components: {

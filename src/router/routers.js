@@ -2,10 +2,6 @@ import Main from '@/components/main'
 import parentView from '@/components/parent-view'
 const Home = ()=>import('../views/single-page/home') // 首页
 const User = ()=>import('../views/users/index.vue') // 用户管理
-const UserBuild = ()=>import('../views/users/build.vue') // 用户管理新建
-const UserEdit = ()=>import('../views/users/edit.vue') // 用户管理编辑
-const UserDetail = ()=>import('../views/users/detail.vue') // 用户管理详情
-const Help = ()=>import('../views/help/index.vue') // 帮助文档
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -15,7 +11,6 @@ const Help = ()=>import('../views/help/index.vue') // 帮助文档
  *         可以传入一个回调函数，参数是当前路由对象，例子看动态路由和带参路由
  *  hideInBread: (false) 设为true后此级路由将不会出现在面包屑中
  *  hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
- *  notCache: (false) 设为true后页面在切换标签后不会缓存，如果需要缓存，无需设置这个字段，而且需要设置页面组件name属性和路由配置的name一致
  *  access: (null) 可访问该页面的权限数组，当前路由设置的权限会影响子路由
  *  icon: (-) 该页面在左侧菜单、面包屑和标签导航处显示的图标，如果是自定义图标，需要在图标名称前加下划线'_'
  * }
@@ -79,36 +74,6 @@ export default [
           title: '用户管理'
         },
         component: User,
-      },
-      {
-        path: 'appuser_build',
-        name: 'appuser_build',
-        meta: {
-          hideInMenu: true,
-          icon: 'ios-navigate',
-          title: '新增用户'
-        },
-        component: UserBuild
-      },
-      {
-        path: 'appuser_edit',
-        name: 'appuser_edit',
-        meta: {
-          hideInMenu: true,
-          icon: 'ios-navigate',
-          title: '修改用户信息'
-        },
-        component: UserEdit
-      },
-      {
-        path: 'appuser_detail',
-        name: 'appuser_detail',
-        meta: {
-          hideInMenu: true,
-          icon: 'ios-navigate',
-          title: '查看用户信息'
-        },
-        component: UserDetail
       },
     ]
   },
@@ -242,23 +207,13 @@ export default [
     ]
   },
   {
-    path: '/help',
-    name: 'help',
+    path: '',
+    name: 'doc',
     meta: {
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'help_page',
-        name: 'help_page',
-        meta: {
-          icon: 'ios-book',
-          title: '帮助文档',
-        },
-        component: Help
-      }
-    ]
+      title: '文档',
+      href: 'https://lison16.github.io/iview-admin-doc/#/',
+      icon: 'ios-book'
+    }
   },
   {
     path: '/message',
