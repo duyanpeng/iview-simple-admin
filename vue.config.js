@@ -15,9 +15,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/app": {
-        // target: "http://192.168.188.195:8301",    // 开发环境
-        // target: "http://10.252.53.107:8301",      // 南石电脑
-        target: "http://10.252.54.194:8522",     // 王辉电脑
+        target: "http://127.0.0.2:8080",     // dev环境接口ip
         changeOrigin: true,
         pathRewrite: {
           '^/app': ''
