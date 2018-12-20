@@ -168,6 +168,7 @@ export default {
 
     // 查询
     handleSubmit() {
+      this.searchConditions.page.num = 1
       this.getList();
     },
 
